@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "ClientDaprized"
+		},
+		{
+			"path": "ServiceDaprized"
+		}
+	],
+	"settings": {}
+}
