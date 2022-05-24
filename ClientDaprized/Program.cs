@@ -13,7 +13,7 @@ var request = client.CreateInvokeMethodRequest(
   "weatherforecast");
 
 var response = await client.InvokeMethodWithResponseAsync(request);
-Console.WriteLine("*** Dapr: SDK invoke result: " + response);
+Console.WriteLine("*** Dapr: SDK invoke result: " + response.Content.ReadAsStringAsync().Result);
 
 
 // Feature: service invocation - with Dapr HttpClient
