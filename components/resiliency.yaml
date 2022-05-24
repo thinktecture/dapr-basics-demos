@@ -33,7 +33,8 @@ spec:
     # circuit breakers maintain counters that live as long as the Dapr sidecar is running. They are not persisted.
     circuitBreakers:
       simpleCB:
-        maxRequests: 1
+        maxRequests: 5
+        maxFailures: 5    
         timeout: 30s 
         trip: consecutiveFailures >= 5
 
@@ -45,4 +46,4 @@ spec:
         retry: important
         # circuit breakers for services are scoped app instance.
         # when a breaker is tripped, that route is removed from load balancing for the configured `timeout` duration.
-        #circuitBreaker: simpleCB
+        circuitBreaker: simpleCB
