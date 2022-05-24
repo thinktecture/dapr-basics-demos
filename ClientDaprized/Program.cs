@@ -18,13 +18,17 @@ var response = await client.InvokeMethodWithResponseAsync(request);
 Console.WriteLine("*** Dapr: SDK invoke result: " + response.Content.ReadAsStringAsync().Result);
 */
 
+
 // Feature: service invocation - with Dapr HttpClient
+/*
 var httpClient = DaprClient.CreateInvokeHttpClient();
 
 var weatherForecasts =
     await httpClient.GetFromJsonAsync<List<WeatherForecast>>(
         "http://service-daprized/weatherforecast");
 Console.WriteLine("*** Dapr: HttpClient invoke result: " + JsonSerializer.Serialize(weatherForecasts));
+*/
+
 
 // Feature: output binding
 /*
@@ -39,5 +43,13 @@ var body =  "<h1>Hello, Techorama!</h1>Greetings.<br>Bye!";
 await client.InvokeBindingAsync("sendgrid", "create", body, metadata);
 Console.WriteLine("*** Dapr: Email sent!");
 */
+
+
+// Feature: pub-sub
+var order = new Order(42);
+
+await client.PublishEventAsync("pubsub", "orders", order);
+    Console.WriteLine("Published data: " + order);
+Console.WriteLine("*** Dapr: Order submitted!");
 
 Console.ReadLine();
