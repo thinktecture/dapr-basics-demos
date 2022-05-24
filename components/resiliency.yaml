@@ -41,9 +41,9 @@ spec:
   # targets are what named policies are applied to. Dapr supports 3 target types - apps, components and actors
   targets:
     apps:
-      client-daprized:
+      service-daprized:
         timeout: general
         retry: important
         # circuit breakers for services are scoped app instance.
         # when a breaker is tripped, that route is removed from load balancing for the configured `timeout` duration.
-        circuitBreaker: simpleCB
+        #circuitBreaker: simpleCB
