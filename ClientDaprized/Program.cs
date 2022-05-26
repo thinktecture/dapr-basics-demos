@@ -38,7 +38,7 @@ var metadata = new Dictionary<string, string> {
     {"subject", "An email from Dapr SendGrid binding"}
   };
 
-var body =  "<h1>Hello, Techorama!</h1>Greetings.<br>Bye!";
+var body =  "<h1>Hello, you!</h1>Greetings.<br>Bye!";
 
 await client.InvokeBindingAsync("sendgrid", "create", body, metadata);
 Console.WriteLine("*** Dapr: Email sent!");

@@ -39,6 +39,7 @@
         },
         {
             "appId": "client-daprized",
+            "appPort": 6002,
             "label": "daprd-debug",
             "type": "daprd",
             "dependsOn": "build"

@@ -1,4 +1,5 @@
 using Dapr;
+using DaprData;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,8 @@ app.MapSubscribeHandler();
 app.MapPost("/orders", [Topic("pubsub", "orders")] (Order order) => {
     Console.WriteLine("Subscriber received : " + order);
     return Results.Ok(order);
-});
+})
+.WithName("OrdersService");
 
 if (app.Environment.IsDevelopment())
 {
