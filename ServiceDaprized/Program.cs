@@ -13,10 +13,12 @@ var app = builder.Build();
 app.UseCloudEvents();
 app.MapSubscribeHandler();
 
-app.MapPost("/orders", [Topic("pubsub", "orders")] (Order order) => {
-    Console.WriteLine("Subscriber received : " + order);
-    return Results.Ok(order);
-})
+app.MapPost("/orders",
+    [Topic("pubsub", "orders")] (Order order) =>
+    {
+        Console.WriteLine("Subscriber received : " + order);
+        return Results.Ok(order);
+    })
 .WithName("OrdersService");
 
 if (app.Environment.IsDevelopment())

@@ -11,10 +11,10 @@ public partial class Program
         Console.WriteLine("Hello, Dapr!");
 
         var menu = new ConsoleMenu(args, level: 0)
-          .Add("Service invocation SDK client", async () => await InvokeServiceWithDaprSdkClient())
-          .Add("Service invocation Http client", async () => await InvokeServiceWithDaprHttpClient())
-          .Add("Output binding", async () => await InvokeOutputBinding())
-          .Add("Publish / subscribe", async () => await PublishEvent())
+          .Add("Service invocation (Dapr SDK client)", async () => await InvokeServiceWithDaprSdkClient())
+          .Add("Service invocation (Dapr HttpClient)", async () => await InvokeServiceWithDaprHttpClient())
+          .Add("Invoke Output binding", async () => await InvokeOutputBinding())
+          .Add("Publish message for pub-sub", async () => await PublishEvent())
           .Add("Exit", () => Environment.Exit(0))
           .Configure(config =>
           {
