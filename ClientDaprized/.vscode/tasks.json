@@ -40,6 +40,8 @@
         {
             "appId": "client-daprized",
             "appPort": 6002,
+            "config": "../configuration/config.yaml",
+            "componentsPath": "./../components",
             "label": "daprd-debug",
             "type": "daprd",
             "dependsOn": "build"

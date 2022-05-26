@@ -25,7 +25,7 @@
             "program": "${workspaceFolder}/bin/Debug/net6.0/ClientDaprized.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
+            "console": "externalTerminal",
             "stopAtEntry": false,
             "postDebugTask": "daprd-down"
         }
