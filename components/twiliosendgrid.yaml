@@ -8,4 +8,8 @@ spec:
   version: v1
   metadata:
   - name: apiKey
-    value: "..." # TODO: Use a real secret!
+    secretKeyRef:
+      name: twilio:apiKey
+      key: twilio:apiKey
+auth:
+  secretStore: secret-local-store
