@@ -13,6 +13,7 @@ builder.Services.AddDaprSidekick(options =>
 {
     options.Sidecar = new DaprSidecarOptions
     {
+        AppPort = 6001,
         AppId = "service-daprized",
         BinDirectory = "../../..",
         CopyProcessFile = true,
