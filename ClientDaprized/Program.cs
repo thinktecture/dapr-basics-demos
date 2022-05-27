@@ -16,6 +16,7 @@ public partial class Program
         {
             Sidecar = new DaprSidecarOptions
             {
+                AppPort = 0,
                 AppId = "client-daprized",
                 BinDirectory = "../../..",
                 CopyProcessFile = true,
