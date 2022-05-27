@@ -1,6 +1,8 @@
 ﻿using ConsoleTools;
 using Dapr.Client;
 using DaprData;
+using Man.Dapr.Sidekick;
+using Man.Dapr.Sidekick.Threading;
 using System.Net.Http.Json;
 using System.Text.Json;
 
@@ -10,12 +12,31 @@ public partial class Program
     {
         Console.WriteLine("Hello, Dapr!");
 
+        var daprOptions = new DaprOptions
+        {
+            Sidecar = new DaprSidecarOptions
+            {
+                AppId = "client-daprized",
+                BinDirectory = "../../..",
+                CopyProcessFile = true,
+                ConfigFile = "./../configuration/config.yaml",
+                ComponentsDirectory = "./../components"
+            }
+        };
+        
+        var sidekick = new DaprSidekickBuilder().Build();
+        sidekick.Sidecar.Start(() => daprOptions, DaprCancellationToken.None);
+
         var menu = new ConsoleMenu(args, level: 0)
           .Add("Service invocation (Dapr SDK client)", async () => await InvokeServiceWithDaprSdkClient())
           .Add("Service invocation (Dapr HttpClient)", async () => await InvokeServiceWithDaprHttpClient())
           .Add("Invoke Output binding", async () => await InvokeOutputBinding())
           .Add("Publish message for pub-sub", async () => await PublishEvent())
-          .Add("Exit", () => Environment.Exit(0))
+          .Add("Exit", () =>
+          {
+              sidekick.Sidecar.Stop(DaprCancellationToken.None);
+              Environment.Exit(0);
+          })
           .Configure(config =>
           {
               config.Selector = "--> ";

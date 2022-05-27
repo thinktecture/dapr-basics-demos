@@ -1,5 +1,6 @@
 using Dapr;
 using DaprData;
+using Man.Dapr.Sidekick;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,18 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDaprSidekick(options =>
+{
+    options.Sidecar = new DaprSidecarOptions
+    {
+        AppId = "service-daprized",
+        BinDirectory = "../../..",
+        CopyProcessFile = true,
+        ConfigFile = "./../configuration/config.yaml",
+        ComponentsDirectory = "./../components"
+    };
+});
 
 var app = builder.Build();
 

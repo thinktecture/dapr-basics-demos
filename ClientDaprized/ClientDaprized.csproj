@@ -9,5 +9,6 @@
 		<PackageReference Include="Dapr.Client" Version="1.7.0"/>
 		<PackageReference Include="System.Net.Http.Json" Version="6.0.0"/>
 		<PackageReference Include="ConsoleMenu-simple" Version="2.4.3"/>
+		<PackageReference Include="Man.Dapr.Sidekick" Version="1.2.1"/>
 	</ItemGroup>
 </Project>
