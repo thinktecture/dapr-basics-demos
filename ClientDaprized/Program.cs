@@ -53,7 +53,7 @@ public partial class Program
         Console.WriteLine("*** Dapr: HttpClient invoke result: " + JsonSerializer.Serialize(weatherForecasts));
     }
 
-    // Feature: output binding
+    // Feature: output binding for sending email
     private static async Task InvokeOutputBinding()
     {
         using var client = new DaprClientBuilder().Build();
@@ -71,7 +71,7 @@ public partial class Program
         Console.WriteLine("*** Dapr: Email sent!");
     }
 
-    // Feature: pub-sub
+    // Feature: publish message with pub-sub
     private static async Task PublishEvent()
     {
         using var client = new DaprClientBuilder().Build();
