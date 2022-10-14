@@ -1,5 +1,6 @@
 ﻿using ConsoleTools;
 using Dapr.Client;
+using Dapr;
 using DaprData;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -36,9 +37,16 @@ public partial class Program
           "service-daprized",
           "weatherforecast");
 
-        var response = await client.InvokeMethodWithResponseAsync(request);
+        try 
+        {
+            var response = await client.InvokeMethodWithResponseAsync(request);
 
-        Console.WriteLine("*** Dapr: SDK invoke result: " + response.Content.ReadAsStringAsync().Result);
+            Console.WriteLine("*** Dapr: SDK invoke result: " + response.Content.ReadAsStringAsync().Result);
+        }
+        catch(DaprException dex)
+        {
+            Console.WriteLine("!!! EXCEPTION: {0}", dex.Message);
+        }
     }
 
     // Feature: service invocation - with Dapr HttpClient

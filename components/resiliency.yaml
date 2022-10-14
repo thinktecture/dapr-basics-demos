@@ -13,7 +13,7 @@ spec:
   policies:
     # timeouts are simple named durations.
     timeouts:
-      general: 5s
+      general: 3s
       important: 60s
       largeResponse: 10s
 
@@ -26,8 +26,8 @@ spec:
 
       important:
         policy: constant
-        duration: 5s
-        maxRetries: 30
+        duration: 3s
+        maxRetries: 5
 
     # circuit breakers are automatically instantiated per component and app instance.
     # circuit breakers maintain counters that live as long as the Dapr sidecar is running. They are not persisted.
