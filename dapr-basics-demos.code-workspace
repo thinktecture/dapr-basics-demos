@@ -5,7 +5,19 @@
 		},
 		{
 			"path": "ServiceDaprized"
+		},
+		{
+			"name": "java-springboot-service-daprized",
+			"path": "java-springboot-service-daprized"
+		},
+		{
+			"path": "configuration"
+		},
+		{
+			"path": "components"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic"
+	}
 }
