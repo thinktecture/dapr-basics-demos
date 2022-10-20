@@ -40,10 +40,11 @@ public partial class Program
         try 
         {
             var response = await client.InvokeMethodWithResponseAsync(request);
+            response.EnsureSuccessStatusCode();
 
             Console.WriteLine("*** Dapr: SDK invoke result: " + response.Content.ReadAsStringAsync().Result);
         }
-        catch(DaprException dex)
+        catch(InvocationException dex)
         {
             Console.WriteLine("!!! EXCEPTION: {0}", dex.Message);
         }
