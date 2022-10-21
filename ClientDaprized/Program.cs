@@ -12,10 +12,10 @@ public partial class Program
         Console.WriteLine("Hello, Dapr!");
 
         var menu = new ConsoleMenu(args, level: 0)
-          .Add("Service invocation (Dapr SDK client)", async () => await InvokeServiceWithDaprSdkClient())
-          .Add("Service invocation (Dapr HttpClient)", async () => await InvokeServiceWithDaprHttpClient())
-          .Add("Invoke Output binding", async () => await InvokeOutputBinding())
-          .Add("Publish message for pub-sub", async () => await PublishEvent())
+          .Add("Web API: Service invocation (Dapr SDK client)", async () => await InvokeServiceWithDaprSdkClient())
+          .Add("Web API: Service invocation (Dapr HttpClient)", async () => await InvokeServiceWithDaprHttpClient())
+          .Add("Sending emails: Invoke Output binding", async () => await InvokeOutputBinding())
+          .Add("Publish new message: Publish-Subscribe ", async () => await PublishEvent())
           .Add("Exit", () => Environment.Exit(0))
           .Configure(config =>
           {
@@ -27,7 +27,7 @@ public partial class Program
         menu.Show();
     }
 
-    // Feature: service invocation - with Dapr SDK client
+    // Feature: service invocation - with Dapr SDK client (respecting Resiliency config, via sidecar)
     private static async Task InvokeServiceWithDaprSdkClient()
     {
         using var client = new DaprClientBuilder().Build();
@@ -39,10 +39,9 @@ public partial class Program
 
         try 
         {
-            var response = await client.InvokeMethodWithResponseAsync(request);
-            //response.EnsureSuccessStatusCode();
+            var response = await client.InvokeMethodAsync<WeatherForecast>(request);
 
-            Console.WriteLine("*** Dapr: SDK invoke result: " + response.Content.ReadAsStringAsync().Result);
+            Console.WriteLine("*** Dapr: SDK invoke result: " + JsonSerializer.Serialize<WeatherForecast>(response));
         }
         catch(InvocationException dex)
         {
@@ -50,7 +49,7 @@ public partial class Program
         }
     }
 
-    // Feature: service invocation - with Dapr HttpClient
+    // Feature: service invocation - with Dapr HttpClient (respecting Resiliency config, via sidecar)
     private static async Task InvokeServiceWithDaprHttpClient()
     {
         var httpClient = DaprClient.CreateInvokeHttpClient();
@@ -61,6 +60,23 @@ public partial class Program
 
         Console.WriteLine("*** Dapr: HttpClient invoke result: " + JsonSerializer.Serialize(weatherForecasts));
     }
+
+    // Feature: gRPC service invocation - with Dapr SDK client (respecting Resiliency config, via sidecar)
+    /*private static async Task InvokeGrpcServiceWithDaprSdkClient()
+    {
+        using var client = new DaprClientBuilder().Build();
+
+        try 
+        {
+            var response = await client.InvokeMethodGrpcAsync<WeatherForecast>("service-daprized", "GetForecasts");
+
+            Console.WriteLine("*** Dapr: SDK invoke result: " + JsonSerializer.Serialize<WeatherForecast>(response));
+        }
+        catch(InvocationException dex)
+        {
+            Console.WriteLine("!!! EXCEPTION: {0}", dex.Message);
+        }
+    }*/
 
     // Feature: output binding for sending email
     private static async Task InvokeOutputBinding()
