@@ -27,7 +27,7 @@ public partial class Program
         menu.Show();
     }
 
-    // Feature: service invocation - with Dapr SDK
+    // Feature: service invocation - with Dapr SDK client
     private static async Task InvokeServiceWithDaprSdkClient()
     {
         using var client = new DaprClientBuilder().Build();
@@ -40,7 +40,7 @@ public partial class Program
         try 
         {
             var response = await client.InvokeMethodWithResponseAsync(request);
-            response.EnsureSuccessStatusCode();
+            //response.EnsureSuccessStatusCode();
 
             Console.WriteLine("*** Dapr: SDK invoke result: " + response.Content.ReadAsStringAsync().Result);
         }

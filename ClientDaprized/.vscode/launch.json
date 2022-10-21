@@ -27,7 +27,17 @@
             "cwd": "${workspaceFolder}",
             "console": "externalTerminal",
             "stopAtEntry": false,
-            "postDebugTask": "daprd-down"
+            "postDebugTask": "daprd-down",
+            "justMyCode": false,
+            "symbolOptions": {
+                "searchMicrosoftSymbolServer": true,
+                "searchNuGetOrgSymbolServer": true
+            },
+            "suppressJITOptimizations": true,
+            "env": {
+                "COMPlus_ZapDisable": "1",
+                "COMPlus_ReadyToRun": "0"
+            }
         }
     ]
 }
