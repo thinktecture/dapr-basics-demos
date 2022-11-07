@@ -39,9 +39,9 @@ public partial class Program
 
         try 
         {
-            var response = await client.InvokeMethodAsync<WeatherForecast>(request);
+            var response = await client.InvokeMethodAsync<List<WeatherForecast>>(request);
 
-            Console.WriteLine("*** Dapr: SDK invoke result: " + JsonSerializer.Serialize<WeatherForecast>(response));
+            Console.WriteLine("*** Dapr: SDK invoke result: " + JsonSerializer.Serialize(response, new JsonSerializerOptions{WriteIndented=true}));
         }
         catch(InvocationException dex)
         {
@@ -58,7 +58,7 @@ public partial class Program
             await httpClient.GetFromJsonAsync<List<WeatherForecast>>(
                 "http://service-daprized/weatherforecast");
 
-        Console.WriteLine("*** Dapr: HttpClient invoke result: " + JsonSerializer.Serialize(weatherForecasts));
+        Console.WriteLine("*** Dapr: HttpClient invoke result: " + JsonSerializer.Serialize(weatherForecasts, new JsonSerializerOptions{WriteIndented=true}));
     }
 
     // Feature: gRPC service invocation - with Dapr SDK client (respecting Resiliency config, via sidecar)
