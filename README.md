@@ -5,7 +5,7 @@ Simple demos of Dapr's features.
 ### .NET service / subscriber
 ```bash
 cd ServiceDaprized
-dapr run --app-id service-daprized --app-port 6001 --dapr-http-port 3601 --dapr-grpc-port 60001 --enable-api-logging dotnet run
+dapr run --app-id service-daprized --app-port 6001 --dapr-http-port 3601 --dapr-grpc-port 60001 --components-path ../components --enable-api-logging dotnet run
 ```
 
 ### .NET client / publisher
