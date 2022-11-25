@@ -27,6 +27,7 @@ public partial class Program
         menu.Show();
     }
 
+    // Sidecar URL: http://localhost:3500/v1.0/invoke/service-daprized/method/weatherforecast
     // Feature: service invocation - with Dapr SDK client (respecting Resiliency config, via sidecar)
     private static async Task InvokeServiceWithDaprSdkClient()
     {
@@ -96,6 +97,7 @@ public partial class Program
         Console.WriteLine("*** Dapr: Email sent!");
     }
 
+    // Sidecar URL: curl -X POST http://localhost:3500/v1.0/publish/pubsub/orders -H "Content-Type: application/json" -d '{"orderId": "42"}'
     // Feature: publish message with pub-sub
     private static async Task PublishEvent()
     {
