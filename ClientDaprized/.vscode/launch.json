@@ -9,7 +9,7 @@
             "program": "${workspaceFolder}/bin/Debug/net6.0/ClientDaprized.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
+            "console": "integratedTerminal",
             "stopAtEntry": false
         },
         {
@@ -25,19 +25,9 @@
             "program": "${workspaceFolder}/bin/Debug/net6.0/ClientDaprized.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
-            "console": "externalTerminal",
+            "console": "integratedTerminal",
             "stopAtEntry": false,
-            "postDebugTask": "daprd-down",
-            "justMyCode": false,
-            "symbolOptions": {
-                "searchMicrosoftSymbolServer": true,
-                "searchNuGetOrgSymbolServer": true
-            },
-            "suppressJITOptimizations": true,
-            "env": {
-                "COMPlus_ZapDisable": "1",
-                "COMPlus_ReadyToRun": "0"
-            }
+            "postDebugTask": "daprd-down"
         }
     ]
 }
